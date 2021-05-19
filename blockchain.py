@@ -37,7 +37,7 @@ class Blockchain():
         check_proof = False
         while check_proof is False:
             hash_operation = hashlib.sha256(str(new_proof**2 - previous_proof**2).encode()).hexdigest()
-            if hash_operation[0:4] == '0000':
+            if hash_operation[0:5] == '00000':
                 check_proof = True
             else:
                 new_proof+=1
@@ -54,14 +54,14 @@ class Blockchain():
             block = chain[block_index]
             if block['previous_hash'] != self.hash(previous_block):
                 return False
-
             previous_proof = previous_block['proof']
             proof = block['proof']
             hash_operation = hashlib.sha256(str(proof**2 - previous_proof**2).encode()).hexdigest()
-            if hash_operation[0:4] != '0000':
+            if hash_operation[0:5] != '00000':
                 return False
             previous_block = block
-
+            block_index+=1
+        return True
 
 
 
@@ -93,7 +93,7 @@ def mine_block():
 
 
 # getting the full blockchain
-@app.route('/get_chain',methods = ['GET'])
+@app.route('/getchain',methods = ['GET'])
 
 def get_chain():
     response = {
@@ -102,4 +102,12 @@ def get_chain():
                 }
     return jsonify(response), 200
 
+@app.route('/isvalid', methods = ['GET'])
+def is_valid():
+    valid = blockchain_obj.isChainValid(blockchain_obj.chain)
+    if valid:
+        response = {'message':'All good BlockChain is valid'}
+    else:
+        response = {'message':'i think there is a problem'}
+    return jsonify(response), 200
 app.run(host='0.0.0.0',port=5000)
