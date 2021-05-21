@@ -33,3 +33,6 @@ new coins in distribution - >	challenges (but the challenges are not power hungr
 				location on the map for the coins by just returning the function whether it should be present here or not and if yes 
 				then how many also we'll need to create a check before the gtame validating core files of the function so that no one 
 				can change the location of the flag.. this can be done with some anticheats or maybe something different.
+
+
+for every year a check to watch active wallets for instance if any account hasnt been logged in or there isn't any activity or transaction for five years it will be considered inactive and to compensate the loss of coins in case of lost account or holder's death, that new coins could be added for the same and if they are reactivated the algorithm could make sure that the supply is steady after every six months to get perfect amount of coins in distribution
