@@ -35,4 +35,14 @@ new coins in distribution - >	challenges (but the challenges are not power hungr
 				can change the location of the flag.. this can be done with some anticheats or maybe something different.
 
 
-for every year a check to watch active wallets for instance if any account hasnt been logged in or there isn't any activity or transaction for five years it will be considered inactive and to compensate the loss of coins in case of lost account or holder's death, that new coins could be added for the same and if they are reactivated the algorithm could make sure that the supply is steady after every six months to get perfect amount of coins in distribution
+				for every year a check to watch active wallets for instance if any account hasnt been logged in or there isn't any activity
+				or transaction for five years it will be considered inactive and to compensate the loss of coins in case of lost account or
+				holder's death, that new coins could be added for the same and if they are reactivated the algorithm could make sure that the
+				supply is steady after every six months to get perfect amount of coins in distribution
+
+Proof of Stake -> 		The devices which have more number of stake in coins, their chain will be accepted, the hashing power in this scenario will be
+				required a minimum but after a while when the number of players increase there'll be a lot of problems of orphan chains leading
+				to invalidated transactions. so what we coul do is every time a server starts playing, randomly one of the user will mine a block
+				with ease and not very power hungry block like just 4-8 leading zeroes , after a while we could decrease the number of transaction
+				in the block therby increasing the number of blocks but we'll still need to reduce the overlapping chains .... but would this be 
+				possible??? or could we make it so that every person that finds a coin mines a block? or would it just be illogical? can we do that while playing the game they can mine a block as in one block per game ? and that block is only confirmed via stakes ........???????
