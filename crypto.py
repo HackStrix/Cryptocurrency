@@ -14,6 +14,8 @@ import json
 from uuid import uuid4
 from urllib.parse import urlparse
 
+from werkzeug.wrappers import response
+
 
 class Blockchain():
 
@@ -148,15 +150,50 @@ def is_valid():
     return jsonify(response), 200
 
 
-@app.route('/add_transaction',methods = ['GET','POST'])
+@app.route('/addtransaction',methods = ['GET','POST'])
 def add_transaction():
     json_content = request.get_json()
-    print(json_content)
+    # print(json_content)
     transaction_keys=['sender','receiver','amount']
     # if not all (key in json_content for key in transaction_keys):
     #     return "Some keys are missing",400
     index = blockchain_obj.add_transaction(json_content['sender'],json_content['receiver'],json_content['amount'])
     return f'Transaction successfull, block {index} will be mined shortly', 201
+
+# Decentralizing the network
+
+#connecting new nodes
+@app.route('/connectnode',methods = ['POST'])
+def connect_node():
+    json_content = request.get_json()
+    nodes = json_content.get('nodes')
+    if nodes is None:
+        return "no node", 400
+    # blockchain_obj.add_node(json_content["address"])
+    for node in nodes:
+        blockchain_obj.add_node(node)
+    response = {
+                "message":"All the nodes are now connected",
+                "all the nodes:" :list(blockchain_obj.nodes)
+                }
+    return jsonify(response),201
+
+
+@app.route('/replacechain', methods = ['GET'])
+def replace_chain():
+    is_replaced = blockchain_obj.replace_chain()
+    if is_replaced:
+        response = {
+                    'message':'All good BlockChain now is replaced',
+                    'new_chain':blockchain_obj.chain
+                    }
+    else:
+        response = {
+                    'message':'i think were good',
+                    'actual_chain': blockchain_obj.chain
+                    }
+    return jsonify(response), 200
+
 
 app.run(host='0.0.0.0',port=5000)
 
